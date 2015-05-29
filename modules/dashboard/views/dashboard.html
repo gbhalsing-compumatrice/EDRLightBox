@@ -10,11 +10,59 @@
 
 
         <div class="row">
-            <div class="col-sm-6" style="background-color:lightcyan;">
+            <div class="col-sm-6 col-md-6 col-lg-6 nomargin nopadding">
+                <div class="tabmap col-md-12 col-lg-12 tabmenumap ">
+                    <ul class="list-unstyled pull-leftlist">
+                        <li>
+                            <button class="btn btn-md btn-default"> SANBORNS</button>
 
+                        </li>
+                        <li>
+                            <button class="btn btn-md btn-default"> AERIALS</button>
+
+                        </li>
+                        <li>
+                            <button class="btn btn-md btn-default"> TOPOS</button>
+
+                        </li>
+                        <li>
+                            <button class="btn btn-md btn-default"> SATELLITE</button>
+
+                        </li>
+                        <li>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default">STREET</button>
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">SIMPLE MAP</a></li>
+                                    <li><a href="#">STREET MAP</a></li>
+                                </ul>
+                            </div>
+
+                        </li>
+                        <li>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default">7.5 min topo</button>
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">7.5 min topo</a></li>
+                                    <li><a href="#">CONTOUR LINES</a></li>
+                                </ul>
+                            </div>
+
+                        </li>
+
+                    </ul>
+                </div>
 
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 col-md-6 col-lg-6 nomargin nopadding">
 
                 <div id="panel">
                     <div class="col-md-12 col-lg-12">
@@ -23,8 +71,8 @@
                                 <div class="col-xs-4 nopadding"><a><i class=" popicon text-gray fa fa-arrow-right"></i></a></div>
                                 <div class="col-xs-8 nopadding">
                                     <div class="row">
-                                        <div class="col-md-4 col-md-push-8  text-right"><a href="#/popoutdetails" target="_blank"><i class="popicon text-gray  fa fa-external-link"></i> </a></div>
-                                        <div class="col-md-8 col-md-pull-2 text-20 ">5</div>
+                                        <div class="col-md-4 col-md-push-8  text-right"><a href="#/propertyDetails/{{siteId}}" target="_blank"><i class="popicon text-gray  fa fa-external-link"></i> </a></div>
+                                        <div class="col-md-8 col-md-pull-2 text-20 ">{{siteId}}</div>
                                     </div>
                                 </div>
 
@@ -32,23 +80,24 @@
                             </div>
 
                             <div class="  map">
-                                <img class="mapimg" src="images/u2067.png" />
+                                <img class="mapimg" ng-src="images/{{sitemapimg}}" />
                             </div>
 
                             <div class="well  nopadding nomargin">
                                 <div class=" col-md-7">
-                                    <span class="popoutspan  vcenter"> 1340 W CENTRAL BLVD</span>
+                                    <span class="popoutspan  vcenter"> {{siteName}}</span><br />
+                                    <span class="popoutspan  vcenter"> {{siteAddress}}</span>
                                 </div>
 
                                 <div class="col-md-5 col-sm-5 vcenter">
                                     <span class="text-10 text-primary"> DISTANCE:</span>
-                                    <span class="text-10"> 120 KM </span><br>
+                                    <span class="text-10"> {{siteDistance}} </span><br>
 
                                     <span class="text-10 text-primary "> DIRECTION:</span>
-                                    <span class="text-10"> North </span><br>
+                                    <span class="text-10"> {{siteDirection}} </span><br>
 
                                     <span class="text-10 text-primary"> ELEVATION:</span>
-                                    <span class="text-10"> Higher</span>
+                                    <span class="text-10"> {{siteElevation}}</span>
                                 </div>
 
                                 <div class="clearfix"> </div>
@@ -56,7 +105,7 @@
                             </div>
 
                             <div class="btn-group col-md-12 nopadding ">
-                                <button type="button" class="col-md-10 btn btn-default">LUST</button>
+                                <button type="button" class="col-md-10 btn btn-default">{{siteDatabase}}</button>
                                 <button type="button" class="col-md-2 btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     <span class="caret"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
@@ -211,9 +260,9 @@
                                 <th class="col-md-2"><a href="" ng-click="orderByField='distance'; reverseSort = !reverseSort">Dist.(ft.)</a></th>
 
                             </tr>
-                            <tr ng-repeat="sites in sitesData  | orderBy:orderByField:reverseSort ">
-                                <td><a href="" ng-click=""><i class="tableicon fa fa-flag-o"></i></a><br><a href="" ng-click=""><i class="tableicon fa fa-ban"></i></a> </td>
-                                <td id="flip" class="col-md-2">{{sites.sitename}}</td>
+                            <tr ng-repeat="sites in sitesData track by $index | orderBy:orderByField:reverseSort " ng-class="{'rowClick':sites.Id == selectedRow}" ng-disabled="rowDisableId ? 'true':'false'">
+                                <td><a href="" ng-click=""><i class="tableicon fa fa-flag-o"></i></a><br><a ng-click="disableRowData(sites.Id)"><i class="tableicon fa fa-ban"></i></a> </td>
+                                <td class="col-md-2" ng-click="getSelectedRowData($index,sites.Id)">{{sites.sitename}}</td>
                                 <td class="col-md-3">{{sites.address}}</td>
                                 <td class="col-md-3">{{sites.database}}</td>
                                 <td class="col-md-2">{{sites.rel}}</td>
@@ -230,9 +279,9 @@
                                     <td class="well" colspan="{{$columns.length}}">
                                         <strong>{{ group.value }}</strong>
                                         <!--<a href="" ng-click="group.$hideRows = !group.$hideRows">
-                                            <span class="glyphicon" ng-class="{ 'glyphicon-chevron-right': group.$hideRows, 'glyphicon-chevron-down': !group.$hideRows }"></span>
+                                    <span class="glyphicon" ng-class="{ 'glyphicon-chevron-right': group.$hideRows, 'glyphicon-chevron-down': !group.$hideRows }"></span>
 
-                                        </a>-->
+                                </a>-->
                                     </td>
                                 </tr>
                                 <tr ng-hide="group.$hideRows" ng-repeat="user in group.data">

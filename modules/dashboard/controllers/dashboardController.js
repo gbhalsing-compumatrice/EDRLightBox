@@ -1,4 +1,4 @@
-﻿angular.module('EDRLightbox').controller('dashboardController', ['$scope', '$state', '$location', '$document', '$timeout', '$http', '$filter', 'NgTableParams', function ($scope, $state, $location, $document, $timeout, $http, $filter, NgTableParams) {
+﻿angular.module('EDRLightbox').controller('dashboardController', ['$scope', '$state', '$location', '$document', '$timeout', '$http', '$filter', 'NgTableParams', 'DashboardService', function ($scope, $state, $location, $document, $timeout, $http, $filter, NgTableParams, DashboardService) {
 
     $scope.selectedTab = 1;
     $scope.physicalSettingsTab = "Physical Settings";
@@ -10,63 +10,82 @@
     $scope.IsSoilDataTbl = false;
     $scope.IsWaterWell = false;
     $scope.IsNotesDataTbl = false;
-
+    $scope.selectedRow = "";
     bindPhysicalSettings();
     bindOtherTabData();
     bindSitesData();
     bindAquiFlowDataData();
     bindBuildingPermitData();
     bindSummaryData();
+    $scope.rowDisableId = false;
 
 
     // Bind Sites Data
     function bindSitesData() {
-        $http.get('json/SitesDataTbl.js').success(function (data) {
+       
+        DashboardService.getSitesData().then(function (result) {
+            $scope.sitesData = result;
 
-            $scope.sitesData = data;
-
+        }, function (error) {
+            
         });
     }
 
     function bindAquiFlowDataData() {
-        $http.get('json/AquiflowDataTbl.js').success(function (data) {
 
-            $scope.aquiFlowData = data;
+        DashboardService.getAquiFlowData().then(function (result) {
+            $scope.aquiFlowData = result;
+
+        }, function (error) {
 
         });
     }
 
     function bindWaterWellDataData() {
-        $http.get('json/WaterWellsDataTbl.js').success(function (data) {
+      
+        DashboardService.getWaterWellData().then(function (result) {
+            $scope.waterWellsData = result;
 
-            $scope.waterWellsData = data;
+        }, function (error) {
 
         });
     }
 
     function bindSoilData() {
-        $http.get('json/SoilDataTbl.js').success(function (data) {
 
-            $scope.soilData = data;
+        DashboardService.getSoilData().then(function (result) {
+            $scope.soilData = result;
+
+        }, function (error) {
 
         });
     }
 
     function bindBuildingPermitData() {
-        $http.get('json/BuildingPermitDataTbl.js').success(function (data) {
+      
+        DashboardService.getBuildingPermitData().then(function (result) {
+            $scope.buildingPermitData = result;
 
-            $scope.buildingPermitData = data;
+        }, function (error) {
 
         });
     }
 
     function bindNotesData() {
-        $http.get('json/NotesDataTbl.js').success(function (data) {
+     
+        DashboardService.getNotesData().then(function (result) {
+            $scope.notesTblData = result;
 
-            $scope.notesTblData = data;
-           
+        }, function (error) {
+
         });
     }
+
+    //function bindDBNameList() {
+    //    $scope.dbList = [
+    //        {""},{}
+    //    ];
+    //}
 
     function bindPhysicalSettings() {
 
@@ -143,10 +162,11 @@
 
     function bindSummaryData() {
         var data;
-        $http.get('json/SummaryData.js').success(function (response) {
 
-            data = response;
-            
+        DashboardService.getSummaryData().then(function (result) {
+         
+            data = result;
+
             $scope.tableParams = new NgTableParams({
                 page: 1,            // show first page
                 total: 1,
@@ -170,9 +190,9 @@
                     sumFourthVal = 0;
                     sumFifthVal = 0;
                     sumGrandTotalVal = 0;
-                   
+
                     // calculate summary
-                   
+
                     angular.forEach(data, function (item) {
 
                         sumFirstVal += (isNaN(item.firstVal) ? 0 : item.firstVal);
@@ -200,8 +220,54 @@
                     $scope.grandTotalVal = sumGrandTotalVal;
                 }
             })
-         
+
+        }, function (error) {
+
         });
-     
-   }
+
+    }
+
+    $scope.getSelectedRowData = function (index, siteid) {
+       
+        $scope.selectedRow = siteid;
+        
+        bindSitePopupData(siteid);
+        
+
+        $("#panel").toggle("slide");
+    }
+
+    function bindSitePopupData(siteid)
+    {
+        
+        var data = findById(siteid);
+        console.log("dsssssss " + JSON.stringify(data))
+
+        console.log("dist" + data.distance)
+        $scope.siteId = data.Id;
+        $scope.siteDistance = data.distance;
+        $scope.siteDirection = "North";
+        $scope.siteElevation = data.rel;
+        $scope.siteName = data.sitename;
+        $scope.siteAddress = data.address;
+        $scope.sitemapimg = data.mapImage;
+        $scope.siteDatabase = data.database;
+    }
+
+    function findById(siteid) {
+        for (var i = 0; i < $scope.sitesData.length; i++) {
+            if ($scope.sitesData[i].Id === siteid) {
+                return $scope.sitesData[i];
+            }
+        }
+        throw "Couldn't find site with id: " + siteid;
+    }
+
+    $scope.disableRowData = function (siteid) {
+        console.log("disable id " + siteid)
+        $scope.rowDisableId = siteid;
+        
+    }
+
+    
 }]);

@@ -9,7 +9,9 @@ body {
 	background-size: cover;
 	background-attachment: fixed;
 }
-
+.rowClick{
+    background-color : #D9E9F9;
+}
 .tabpad{
 	 padding-top:10px;
 	
@@ -135,6 +137,13 @@ outline: 0;
  background-color: #3074a6;
 }
 
+/*left tab mapsection*/
+ .tabmenumap{
+     background-color:#3074a6;
+     padding:10px 0 10px 0px;
+   
+ }
+/*left tab mapsection end*/
 /* Table Right */
 .tableicon{
 	font-size:20px;
@@ -151,19 +160,32 @@ outline: 0;
 	 font-size:20px;
 	 
 	 }
-
+  .text-36{
+      font-family: "Open Sans";
+font-weight: normal;
+font-style: normal;
+font-size: 36px;
+ 
+	 
+	 }
+ .text-white{
+	color:#FFFFFF !important;
+	}
 #panel {
  	position:absolute;
 	margin-left:-390px;
 	float:right !important;
     width:400px;
     z-index:10;
+    display:none;
 
 }
 .popicon {
     	font-size:23px;
 }
- 
+.popouticon {
+    font-size:27px;
+}
 .popoutspan {
 
     font-family: "Open Sans";
@@ -187,8 +209,45 @@ font-weight: normal;
 font-style: normal;
 font-size: 10px;
  
-line-height: 24px;
 
+}
+.text-13 {
+    font-family: "Open Sans";
+font-weight: normal;
+font-style: normal;
+font-size: 13px;
+ 
+
+}
+.text-30 { font-family: "Open Sans";
+font-weight: normal;
+font-style: normal;
+font-size: 30px;
+}
+.text-60 {
+    font-family: "Open Sans";
+font-weight: normal;
+font-style: normal;
+font-size: 60px;
+  
+}
+.text-48 {
+    font-family: "Open Sans";
+font-weight: normal;
+font-style: normal;
+font-size: 48px;
+  
+}
+.pull-leftlist li {
+    margin:0 5px 0 5px;;
+    float:left;
+}
+.arowpopout {
+
+font-weight: 400;
+font-style: normal;
+font-size: 36px;
+color: #3074A6;
 }
 .popdropbtn {
 
@@ -207,6 +266,20 @@ line-height: 24px;
     background-size:cover;
     width:100%;
 }
+.popoutdetail ul li {
+     line-height:25px;
+    clear:both;
+}
+.bg-black {
+background-color:#797979;	
+}
+.bg-bluedark {
+background-color:#2a6692;	
+}
+.closeiconpop {
+    margin-right:-15px !important;
+}
+.map-id{margin-bottom:0px !important;}
 /*popout end*/
 
 /* Table End */		

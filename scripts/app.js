@@ -48,10 +48,10 @@ angular.module('EDRLightbox').config([
           'templateUrl': 'modules/signin/views/signIn.html',
 
       })
-      .state('popoutdetails', {
+      .state('propertyDetails', {
 
-          'url': '/popoutdetails',
-          'controller': 'dashboardController',
+          'url': '/propertyDetails/:siteId',
+          'controller': 'propertyDetailsController',
           'templateUrl': 'modules/dashboard/views/popoutdetails.html',
 
       })
@@ -75,6 +75,23 @@ angular.module('EDRLightbox').directive('numFilter', function () {
         }
     }
 
-})
+});
+angular.module('EDRLightbox').directive('flipPanel', function () {
 
+    return {
+        restrict: 'A',
+        replace: false,
+
+        link: function (scope, elem, attr) {
+
+            elem.on('click', function () {
+               
+                    $("#panel").toggle("slide");
+                
+            })
+
+        }
+    }
+
+})
 
