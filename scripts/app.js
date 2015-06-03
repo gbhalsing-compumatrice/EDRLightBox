@@ -55,7 +55,20 @@ angular.module('EDRLightbox').config([
           'templateUrl': 'modules/dashboard/views/popoutdetails.html',
 
       })
+      .state('database_descriptions', {
 
+          'url': '/database_descriptions',
+          'controller': 'dbDescriptionsController',
+          'templateUrl': 'modules/dashboard/views/databaseDescriptions.html',
+
+      })
+      .state('detailsPrint', {
+
+          'url': '/detailsPrint/:siteId',
+          'controller': 'propertyDetailsController',
+          'templateUrl': 'modules/dashboard/views/detailsPrint.html',
+
+      })
   }
 
 

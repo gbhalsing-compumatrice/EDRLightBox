@@ -4,104 +4,103 @@
     <title></title>
 </head>
 <body>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-8 col-md-8 col-lg-8 nopadding nomargin">
-                <div class="bg-bluedark nopadding nomargin">
-                    <p class="text-60 text-white ">{{siteName}}</p>
-                    <p class="text-48 nopadding nomargin text-white "> {{siteAddress}} </p>
-                </div>
-                <div class="tabbable">
-                    <ul class="nav nav-tabs bg-blue tabpad">
-                        <li ng-class="{active: selectedTab == 1}"> <a ng-click="selectedTab = 1;">{{siteDatabase}}</a> </li>
-                        <li ng-class="{active: selectedTab == 2}"> <a ng-click="selectedTab = 2;">UST</a> </li>
-                        <div class="pull-right clearfix col-md-7 col-md-push-2">
-                            <input type="checkbox" name="Report" /> <span class="text-white">Hide 'Not Reported' Fields </span>
+    
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-md-8 col-lg-8 nopadding nomargin">
+                    <div class="bg-bluedark nopadding nomargin">
+                        <p class="text-60 text-white ">{{siteName}}</p>
+                        <p class="text-48 nopadding nomargin text-white "> {{siteAddress}} </p>
+                    </div>
+                    <div class="tabbable">
+                        <ul class="nav nav-tabs bg-blue tabpad">
+                            <li ng-class="{active: selectedTab == 1}"> <a ng-click="selectedTab = 1;">{{siteDatabase}}</a> </li>
+                            <li ng-class="{active: selectedTab == 2}"> <a ng-click="selectedTab = 2;">UST</a> </li>
+                            <div class="pull-right clearfix col-md-7 col-md-push-2">
+                                <input type="checkbox" name="Report" /> <span class="text-white">Hide 'Not Reported' Fields </span>
+                            </div>
+                        </ul>
+                        <div class="popoutdetail tab-content" ng-show="selectedTab == 1">
+                            <ul class="list-unstyled clearfix  text-13">
+                                <li data-ng-repeat="data in additionalInfoData">
+                                    <strong class="col-md-5"> {{data.name}}:</strong><span class="col-md-5 text-left">{{data.value}}</span>
+                                </li>
+                               
+                            </ul>
                         </div>
-                    </ul>
-                    <div class="popoutdetail tab-content" ng-show="selectedTab == 1">
-                        <ul class="list-unstyled clearfix  text-13">
-                            <li><strong class="col-md-5"> Region:</strong><span class="col-md-5 text-left">STATE</span> </li>
-                            <li><strong class="col-md-5"> Global Id:</strong><span class="col-md-5 text-left">T0608300668</span> </li>
-                            <li><strong class="col-md-5"> Latitude:</strong><span class="col-md-5 text-left">34.428918452</span> </li>
-                            <li><strong class="col-md-5"> Longitude:</strong><span class="col-md-5 text-left">-119.716145401</span> </li>
-                            <li><strong class="col-md-5"> Case Type:</strong><span class="col-md-5 text-left">LUST Cleanup Site</span> </li>
-                            <li><strong class="col-md-5">Status:</strong><span class="col-md-5 text-left">Completed - Case Closed</span> </li>
-                            <li><strong class="col-md-5"> Status Date:</strong><span class="col-md-5 text-left">06/09/2000</span> </li>
-                            <li><strong class="col-md-5"> Lead Agency:</strong><span class="col-md-5 text-left">SANTA BARBARA COUNTY LOP</span> </li>
-                            <li><strong class="col-md-5">Case Worker:</strong><span class="col-md-5 text-left">CSB</span> </li>
-                            <li><strong class="col-md-5"> Local Agency:</strong><span class="col-md-5 text-left">SANTA BARBARA COUNTY LOP</span> </li>
-                            <li><strong class="col-md-5"> RB Case Number:</strong><span class="col-md-5 text-left">3236</span> </li>
-                            <li><strong class="col-md-5"> LOC Case Number:</strong><span class="col-md-5 text-left">90069</span> </li>
+                        <div class="popoutdetail tab-content" ng-show="selectedTab == 2">
+                            <ul class="list-unstyled clearfix  text-13">
+                                <li data-ng-repeat="data in additionalInfoUSTData">
+                                    <strong class="col-md-5"> {{data.name}}:</strong><span class="col-md-5 text-left">{{data.value}}</span>
+                                </li>
+                               
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4 nopadding nomargin  ">
+                    <div class=" clearfix  bg-black">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 ">
+                            <span><a ng-click="btnFlag()"><i class="btn btn-lg text-white popouticon fa fa-flag-o"></i></a> </span>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <span><a ng-click="btnDisable()"><i class="btn btn-lg text-white popouticon fa fa-ban"></i></a></span>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <span><a ng-click="btnPrint()" target="_blank" ><i class="btn btn-lg text-white popouticon fa fa-print"></i></a></span>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3    text-right">
+                            <span><a ng-click="btnClose()"><i class="closeiconpop btn btn-lg btn-danger text-white popouticon fa fa-times-circle-o"></i></a></span>
+                        </div>
+                    </div>
+                    <div class="well map-id col-md-12">
+                        <p class="text-13 text-primary">MAP ID: </p>
+                        <p class="text-30"> {{siteId}}</p>
+                        <p class="text-13 text-primary">SITE NAME: </p>
+                        <p class="text-30"> {{siteName}}</p>
+                        <p class="text-13 text-primary">DISTANCE FROM TP: </p>
+                        <p class="text-30"> {{siteDistance}}</p>
+                        <p class="text-13 text-primary">DIRECTION FROM TP: </p>
+                        <p class="text-30"> {{siteDirection}}</p>
+                        <p class="text-13 text-primary">ELEVATION: </p>
+                        <p class="text-30">{{siteElevation}}</p>
+                        <p class="text-13 text-primary">GRADIENT </p>
+                        <p class="text-30"> {{siteElevation}}</p>
+                    </div>
+
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 well ">
+
+                    <div class="pull-left">
+                        <ul class="list-unstyled pull-leftlist ">
+
+                            <li>
+                                <i class="arowpopout fa fa-chevron-left"></i>
+                            </li>
+                            <li class="text-13">
+                                1330 W. Central Blvd.<br>
+
+                                RCRA-CESQG, FINDS
+                            </li>
                         </ul>
                     </div>
-                </div>
+                    <div class="pull-right">
+                        <ul class="list-unstyled pull-leftlist">
+                            <li class="text-13">
+                                1407 W. Central Blvd.<br>
 
-            </div>
-            <div class="col-sm-4 col-md-4 col-lg-4 nopadding nomargin  ">
-                <div class=" clearfix  bg-black">
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 ">
-                        <span><a ng-click="btnFlag()"><i class="btn btn-lg text-white popouticon fa fa-flag-o"></i></a> </span>
+                                RCRA-CESQG, FINDS
+                            </li>
+                            <li>
+                                <i class="arowpopout fa fa-chevron-right"></i>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                        <span><a ng-click="btnDisable()"><i class="btn btn-lg text-white popouticon fa fa-ban"></i></a></span>
-                    </div>
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                        <span><a ng-click="btnPrint()"><i class="btn btn-lg text-white popouticon fa fa-print"></i></a></span>
-                    </div>
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3    text-right">
-                        <span><a ng-click="btnClose()"><i class="closeiconpop btn btn-lg btn-danger text-white popouticon fa fa-times-circle-o"></i></a></span>
-                    </div>
+
                 </div>
-                <div class="well map-id col-md-12">
-                    <p class="text-13 text-primary">MAP ID: </p>
-                    <p class="text-30"> {{siteId}}</p>
-                    <p class="text-13 text-primary">SITE NAME: </p>
-                    <p class="text-30"> {{siteName}}</p>
-                    <p class="text-13 text-primary">DISTANCE FROM TP: </p>
-                    <p class="text-30"> {{siteDistance}}</p>
-                    <p class="text-13 text-primary">DIRECTION FROM TP: </p>
-                    <p class="text-30"> {{siteDirection}}</p>
-                    <p class="text-13 text-primary">ELEVATION: </p>
-                    <p class="text-30">{{siteElevation}}</p>
-                    <p class="text-13 text-primary">GRADIENT </p>
-                    <p class="text-30"> {{siteElevation}}</p>
-                </div>
-
-            </div>
-            <div class="col-sm-12 col-md-12 col-lg-12 well ">
-
-                <div class="pull-left">
-                    <ul class="list-unstyled pull-leftlist ">
-
-                        <li>
-                            <i class="arowpopout fa fa-chevron-left"></i>
-                        </li>
-                        <li class="text-13">
-                            1330 W. Central Blvd.<br>
-
-                            RCRA-CESQG, FINDS
-                        </li>
-                    </ul>
-                </div>
-                <div class="pull-right">
-                    <ul class="list-unstyled pull-leftlist">
-                        <li class="text-13">
-                            1407 W. Central Blvd.<br>
-
-                            RCRA-CESQG, FINDS
-                        </li>
-                        <li>
-                            <i class="arowpopout fa fa-chevron-right"></i>
-                        </li>
-                    </ul>
-                </div>
-
             </div>
         </div>
-    </div>
-
-
+   
 </body>
 </html>

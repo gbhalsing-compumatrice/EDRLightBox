@@ -12,6 +12,29 @@
                 });
     }
 
+    dashboardService.getSitesAdditinalInfo = function () {
+
+        return $http.get('json/sitesAdditionalInfo.js').then(
+            function (results) {
+                return results.data;
+            })
+    }
+    dashboardService.getSitesAdditinalInfodefault = function () {
+
+        return $http.get('json/sitesAdditionalInfoDefault.js').then(
+            function (results) {
+                return results.data;
+            })
+    }
+
+    dashboardService.getSitesAdditinalInfoUST = function () {
+
+        return $http.get('json/sitesAdditionalInfoUST.js').then(
+            function (results) {
+                return results.data;
+            })
+    }
+
     dashboardService.getAquiFlowData = function () {
        
         return $http.get('json/AquiflowDataTbl.js').then(
@@ -60,6 +83,21 @@
             })
     }
 
+    dashboardService.getDBList = function () {
+
+        return $http.get('json/DBList.js').then(
+            function (results) {
+                return results.data;
+            })
+    }
+
+    dashboardService.getGalleryData = function () {
+
+        return $http.get('json/GalleryData.js').then(
+            function (results) {
+                return results.data;
+            })
+    }
 
     return dashboardService;
 

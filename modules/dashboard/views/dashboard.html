@@ -10,8 +10,10 @@
 
 
         <div class="row">
-            <div class="col-sm-6 col-md-6 col-lg-6 nomargin nopadding">
-                <div class="tabmap col-md-12 col-lg-12 tabmenumap ">
+            <div class="col-sm-6 col-md-6 col-lg-6 nomargin nopadding backgroundmap">
+                <!--left panel section-->
+
+                <div class="tabmap col-md-12 col-lg-12 tabmenumap  ">
                     <ul class="list-unstyled pull-leftlist">
                         <li>
                             <button class="btn btn-md btn-default"> SANBORNS</button>
@@ -37,8 +39,8 @@
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">SIMPLE MAP</a></li>
-                                    <li><a href="#">STREET MAP</a></li>
+                                    <li><a href="#">  <img src="images/simple-map.png" /> SIMPLE MAP</a></li>
+                                    <li><a href="#">  <img src="images/Street-map.png" />STREET MAP</a></li>
                                 </ul>
                             </div>
 
@@ -51,8 +53,8 @@
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">7.5 min topo</a></li>
-                                    <li><a href="#">CONTOUR LINES</a></li>
+                                    <li><a href="#"><img src="images/7.5%20MINTOPO.png" /> 7.5 min topo</a></li>
+                                    <li><a href="#"><img src="images/contourlines.png" /> CONTOUR LINES</a></li>
                                 </ul>
                             </div>
 
@@ -61,14 +63,12 @@
                     </ul>
                 </div>
 
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-6 nomargin nopadding">
 
                 <div id="panel">
-                    <div class="col-md-12 col-lg-12">
+                    <div class="col-md-12 col-lg-12 nomargin nopadding">
                         <div class=" panel panel-default">
                             <div class="panel-heading popoutheader">
-                                <div class="col-xs-4 nopadding"><a><i class=" popicon text-gray fa fa-arrow-right"></i></a></div>
+                                <div class="col-xs-4 nopadding"><a class="pointer" ng-click="hidePopup()"><i class=" popicon text-gray fa fa-arrow-right"></i></a></div>
                                 <div class="col-xs-8 nopadding">
                                     <div class="row">
                                         <div class="col-md-4 col-md-push-8  text-right"><a href="#/propertyDetails/{{siteId}}" target="_blank"><i class="popicon text-gray  fa fa-external-link"></i> </a></div>
@@ -105,32 +105,38 @@
                             </div>
 
                             <div class="btn-group col-md-12 nopadding ">
-                                <button type="button" class="col-md-10 btn btn-default">{{siteDatabase}}</button>
+                                <button type="button" class="col-md-10 btn btn-default" ng-click="bindDefultAdditionalInfo()">{{siteDatabase}}</button>
                                 <button type="button" class="col-md-2 btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     <span class="caret"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="col-md-12 dropdown-menu" role="menu">
-                                    <li><a href="#">UST</a></li>
-                                    <li><a href="#">Database3</a></li>
-                                    <li><a href="#">Database4</a></li>
 
+                                    <li data-ng-repeat="DBdata in popupDBList">
+                                        <a ng-click="getDetailsByDB(DBdata.Id)">{{DBdata.name}}</a>
+
+                                    </li>
                                 </ul>
                             </div>
                             <div class="popoutscroll col-md-12">
                                 <ul class="list-unstyled text-10">
-                                    <li><strong class="pull-left"> Region:</strong><span class="pull-right">STATE</span> </li>
-                                    <li><strong class="pull-left"> Global Id:</strong><span class="pull-right">T0608300668</span> </li>
-                                    <li><strong class="pull-left"> Latitude:</strong><span class="pull-right">34.428918452</span> </li>
-                                    <li><strong class="pull-left"> Longitude:</strong><span class="pull-right">-119.716145401</span> </li>
-                                    <li><strong class="pull-left"> Case Type:</strong><span class="pull-right">LUST Cleanup Site</span> </li>
-                                    <li><strong class="pull-left">Status:</strong><span class="pull-right">Completed - Case Closed</span> </li>
-                                    <li><strong class="pull-left"> Status Date:</strong><span class="pull-right">06/09/2000</span> </li>
-                                    <li><strong class="pull-left"> Lead Agency:</strong><span class="pull-right">SANTA BARBARA COUNTY LOP</span> </li>
-                                    <li><strong class="pull-left">Case Worker:</strong><span class="pull-right">CSB</span> </li>
-                                    <li><strong class="pull-left"> Local Agency:</strong><span class="pull-right">SANTA BARBARA COUNTY LOP</span> </li>
-                                    <li><strong class="pull-left"> RB Case Number:</strong><span class="pull-right">3236</span> </li>
-                                    <li><strong class="pull-left"> LOC Case Number:</strong><span class="pull-right">90069</span> </li>
+
+                                    <li><strong class="pull-left"> Region:</strong><span class="pull-right">{{Region}}</span> </li>
+                                    <li><strong class="pull-left"> Global Id:</strong><span class="pull-right">{{Global_Id}}</span> </li>
+                                    <li><strong class="pull-left"> Latitude:</strong><span class="pull-right">{{Latitude}}</span> </li>
+                                    <li><strong class="pull-left"> Longitude:</strong><span class="pull-right">{{Longitude}}</span> </li>
+                                    <li><strong class="pull-left"> Case Type:</strong><span class="pull-right">{{Case_Type}}</span> </li>
+                                    <li><strong class="pull-left">Status:</strong><span class="pull-right">{{Status}}</span> </li>
+                                    <li><strong class="pull-left"> Status Date:</strong><span class="pull-right">{{Status_Date}}</span> </li>
+                                    <li><strong class="pull-left"> Lead Agency:</strong><span class="pull-right">{{Lead_Agency}}</span> </li>
+                                    <li><strong class="pull-left">Case Worker:</strong><span class="pull-right">{{Case_Worker}}</span> </li>
+                                    <li><strong class="pull-left"> Local Agency:</strong><span class="pull-right">{{Local_Agency}}</span> </li>
+                                    <li><strong class="pull-left"> RB Case Number:</strong><span class="pull-right">{{RB_Case_Number}}</span> </li>
+                                    <li><strong class="pull-left"> LOC Case Number:</strong><span class="pull-right">{{LOC_Case_Number}}</span> </li>
+                                    <li><strong class="pull-left"> File Location:</strong><span class="pull-right">{{File_Location}}</span> </li>
+                                    <li><strong class="pull-left"> Potential Media Affect:</strong><span class="pull-right">{{Potential_Media_Affect}}</span> </li>
+                                    <li><strong class="pull-left"> Potential Contaminants of Concern:</strong><span class="pull-right">{{Potential_Contaminants_of_Concern}}</span> </li>
+                                    <li><strong class="pull-left"> Site History:</strong><span class="pull-right">{{Site_History}}</span> </li>
                                 </ul>
 
 
@@ -140,50 +146,61 @@
                         </div>
                     </div>
                 </div>
-
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6 nomargin nopadding">
                 <div class="tabbable ">
                     <ul class="nav nav-tabs bg-blue tabpad">
                         <li ng-class="{active: selectedTab == 1}">
-                            <a ng-click="selectedTab = 1;">Sites (39)</a>
+                            <a ng-click="selectedTab = 1;" class="pointer">Sites (39)</a>
                         </li>
                         <li ng-class="{active: selectedTab == 2}">
-                            <a ng-click="selectedTab = 2;">Summary</a>
+                            <a ng-click="selectedTab = 2;" class="pointer">Summary</a>
                         </li>
 
                         <li ng-class="{active: selectedTab == 3}">
-                            <a ng-click="selectedTab = 3;" class="dropdown-toggle" data-toggle="dropdown">{{physicalSettingsTab}} <span class="caret"></span></a>
+                            <a ng-click="selectedTab = 3;" class="dropdown-toggle pointer" data-toggle="dropdown">{{physicalSettingsTab}} <span class="caret"></span></a>
 
-                            <ul class="dropdown-menu" role="menu">
-
-
-                                <li data-ng-repeat="data in physicalSettings">
-                                    <a data-toggle="tab">
-                                        <input name="currentTabel"
-                                               type="radio"
-                                               value="{{data.pId}}"
-                                               ng-model="currentTblName"
-                                               ng-click="LoadPhysicalTableData(data.pId,data.name)" ng-disabled="{{data.IsPhysicalActive}}" />
-                                        {{data.name}} <span class=" pull-right">({{data.count}})</span>
-                                    </a>
+                            <ul class="dropdown-menu physicaltab" role="menu">
+                                <li id="physicalOne">
+                                    <a data-toggle="tab" class="pointer" ng-click="LoadPhysicalTableData(1)" ng-disabled="{{IsAquiActive}}">Aquiflow ({{aquiCount}})<span class=" pull-right"><img src="../images/u99.png" /> </span></a>
+                                 
                                 </li>
+                                <li id="physicalTwo">
+                                    <a data-toggle="tab" class="pointer" ng-click="LoadPhysicalTableData(2)" ng-disabled="{{IsWaterActive}}">Water Wells ({{waterWellCount}}) <span class=" pull-right"><img src="../images/u1000.png" /> </span></a>
+
+                                </li>
+                                <li id="physicalThree">
+                                    <a data-toggle="tab" class="pointer" ng-click="LoadPhysicalTableData(3)" ng-disabled="{{IsOilActive}}">Oil & Gas Wells ({{oilGasCount}})<span class=" pull-right"><img src="../images/u1004.png" /> </span></a>
+
+                                </li>
+                                <li id="physicalFour">
+                                    <a data-toggle="tab" class="pointer" ng-click="LoadPhysicalTableData(4)" ng-disabled="{{IsSoilActive}}">Soil Data ({{Soilcount}}) <span class=" pull-right"> <img src="../images/u1006.png" /> </span></a>
+
+                                </li>
+                                <!--<li data-ng-repeat="data in physicalSettings">
+                                    <a data-toggle="tab" ng-click="LoadPhysicalTableData(data.pId,data.name)" ng-disabled="{{data.IsPhysicalActive}}">{{data.name}} <span class=" pull-right">({{data.count}})</span></a>
+
+                                </li>-->
                             </ul>
                         </li>
 
                         <li ng-class="{active: selectedTab == 4}">
-                            <a ng-click="selectedTab = 4;" class="dropdown-toggle" data-toggle="dropdown">{{OtherTabname}} <span class="caret"></span></a>
+                            <a ng-click="selectedTab = 4;" class="dropdown-toggle  pointer" data-toggle="dropdown">{{OtherTabname}} <span class="caret"></span></a>
 
                             <ul class="dropdown-menu" role="menu">
-
-                                <li data-ng-repeat="otherdata in OtherTab">
-                                    <a data-toggle="tab">
-                                        <input name="currentOtherTabel"
-                                               type="radio"
-                                               value="{{otherdata.Id}}"
-                                               ng-model="currentotherdata"
-                                               ng-click="LoadOtherTableData(otherdata.Id,otherdata.name)" />
-                                        {{otherdata.name}}
-                                    </a>
+                                <li id="otherOne">
+                                    <a data-toggle="tab" class="pointer" ng-click="LoadOtherTableData(1)">Building Permits <i class="navbaricon  pull-right fa fa-file-text-o"></i></a>
                                 </li>
+                                <li id="otherTwo">
+                                    <a data-toggle="tab" class="pointer" ng-click="LoadOtherTableData(2)">Mobile Photos <i class="navbaricon pull-right fa fa-picture-o"></i></a>
+                                </li>
+                                <li id="otherThree">
+                                    <a data-toggle="tab" class="pointer" ng-click="LoadOtherTableData(3)">Mobile Notes <i class=" navbaricon pull-right fa fa-pencil-square"></i></a>
+                                </li>
+
+                                <!--<li data-ng-repeat="otherdata in OtherTab">
+                                    <a data-toggle="tab" ng-click="LoadOtherTableData(otherdata.Id,otherdata.name)" ng-model="currentotherdata">{{otherdata.name}}</a>
+                                </li>-->
                             </ul>
                         </li>
                     </ul>
@@ -202,19 +219,19 @@
                                         <ul class="dropdown-menu" role="menu">
 
                                             <li>
-                                                <input name="currentTabel" type="checkbox" value="" />
+                                                <input name="currentTabel" type="checkbox" ng-model="star" ng-click="" />
                                                 <i class="tableicon  fa fa-star-o"></i>
                                             </li>
                                             <li>
-                                                <input name="currentTabel" type="checkbox" value="" />
+                                                <input name="currentTabel" type="checkbox" ng-model="unstar" ng-click="" />
                                                 <i class="tableicon  fa fa-star"></i>
                                             </li>
                                             <li>
-                                                <input name="currentTabel" type="checkbox" value="" />
+                                                <input name="currentTabel" type="checkbox" ng-model="eyeon" ng-click="" />
                                                 <i class="tableicon  fa fa-eye"></i>
                                             </li>
                                             <li>
-                                                <input name="currentTabel" type="checkbox" value="" />
+                                                <input name="currentTabel" type="checkbox" ng-model="eyeoff" ng-click="" />
                                                 <i class="tableicon  fa fa-eye-slash"></i>
                                             </li>
 
@@ -232,27 +249,15 @@
                                             <span class="caret"></span>
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li> MAPPED SITES FILTER:</li>
-                                            <li><a href="#">All Databases</a></li>
-                                            <li><a href="#">RCRA-LQG</a></li>
-                                            <li><a href="#">RCRA-SQG</a></li>
-                                            <li><a href="#">RCRA-CESQG</a></li>
-                                            <li><a href="#">LUST</a></li>
-                                            <li><a href="#">SLIC</a></li>
-                                            <li><a href="#">UST</a></li>
-                                            <li><a href="#">CA FID UST</a></li>
-                                            <li><a href="#">HIST UST</a></li>
-                                            <li><a href="#">SWEEPS UST</a></li>
-                                            <li><a href="#">EDR US Hist Cleaners</a></li>
-                                            <li><a href="#">EDR US Hist Auto Stat</a></li>
-                                            <li><a href="#">CUPA Listings</a></li>
-                                            <li><a href="#">DRYCLEANERS</a></li>
-                                            <li><a href="#">FINDS</a></li>
-                                            <li><a href="#">HIST UST</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Include Orphans in Site List</a></li>
 
+                                        <ul class="dropdown-menu" role="menu">
+                                            MAPPED SITES FILTER:
+
+                                            <li data-ng-repeat="dbData in dbList">
+
+                                                <input type="checkbox" ng-model="filterItems[dbData.database]"> {{dbData.database}}
+
+                                            </li>
                                         </ul>
                                     </div>
                                 </th>
@@ -260,13 +265,13 @@
                                 <th class="col-md-2"><a href="" ng-click="orderByField='distance'; reverseSort = !reverseSort">Dist.(ft.)</a></th>
 
                             </tr>
-                            <tr ng-repeat="sites in sitesData track by $index | orderBy:orderByField:reverseSort " ng-class="{'rowClick':sites.Id == selectedRow}" ng-disabled="rowDisableId ? 'true':'false'">
+                            <tr ng-repeat="sites in sitesData | orderBy:orderByField : reverseSort | filter:DBFilter" ng-class="{'rowClick':sites.Id == selectedRow}">
                                 <td><a href="" ng-click=""><i class="tableicon fa fa-flag-o"></i></a><br><a ng-click="disableRowData(sites.Id)"><i class="tableicon fa fa-ban"></i></a> </td>
-                                <td class="col-md-2" ng-click="getSelectedRowData($index,sites.Id)">{{sites.sitename}}</td>
-                                <td class="col-md-3">{{sites.address}}</td>
-                                <td class="col-md-3">{{sites.database}}</td>
-                                <td class="col-md-2">{{sites.rel}}</td>
-                                <td class="col-md-2">{{sites.distance}}</td>
+                                <td class="col-md-2" ng-click="getSelectedRowData(sites.Id)">{{sites.sitename}}</td>
+                                <td class="col-md-3" ng-click="getSelectedRowData(sites.Id)">{{sites.address}}</td>
+                                <td class="col-md-3" ng-click="getSelectedRowData(sites.Id)">{{sites.database}}</td>
+                                <td class="col-md-2" ng-click="getSelectedRowData(sites.Id)">{{sites.rel}}</td>
+                                <td class="col-md-2" ng-click="getSelectedRowData(sites.Id)">{{sites.distance}}</td>
                             </tr>
                         </table>
 
@@ -279,9 +284,9 @@
                                     <td class="well" colspan="{{$columns.length}}">
                                         <strong>{{ group.value }}</strong>
                                         <!--<a href="" ng-click="group.$hideRows = !group.$hideRows">
-                                    <span class="glyphicon" ng-class="{ 'glyphicon-chevron-right': group.$hideRows, 'glyphicon-chevron-down': !group.$hideRows }"></span>
+                                            <span class="glyphicon" ng-class="{ 'glyphicon-chevron-right': group.$hideRows, 'glyphicon-chevron-down': !group.$hideRows }"></span>
 
-                                </a>-->
+                                        </a>-->
                                     </td>
                                 </tr>
                                 <tr ng-hide="group.$hideRows" ng-repeat="user in group.data">
@@ -433,10 +438,39 @@
 
                             </tr>
                         </table>
-                    </div>
+                        <div ng-show="isGallary">
+                            <!--photo gallery-->
+                            <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-use-bootstrap-modal="false">
+                                <div class="slides"></div>
+                                <h3 class="title"></h3>
+                                <a class="prev">‹</a>
+                                <a class="next">›</a>
+                                <a class="close">×</a>
+                                <a class="play-pause"></a>
+                                <ol class="indicator"></ol>
+                            </div>
+                            <div id="links" class="top-margin">
+                                <div class="col-xs-6 col-sm-4 col-md-4" ng-repeat="imageData in gallery">
+                                    <div class="thumbnail">
+                                        <div class="caption">
+                                            <p>{{imageData.caption}}</p>
+                                        </div>
+                                        <a href="images/{{imageData.mainImage}}" title="{{imageData.title}}" data-gallery>
+                                            <img src="images/{{imageData.thumbnilImage}}" alt="{{imageData.title}}" />
+                                        </a>
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+                        <!-- Photo Gallery End -->
+                      </div>
+                    
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 </html>
