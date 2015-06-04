@@ -123,8 +123,25 @@ height:768px;
 
 }
 /*map end*/
+/*database description*/
+.searchinput{
+    padding:0px 20px 20px 20px;
+}
+.searchinput .input-group-btn{
 
+        padding-left:20px;
+}
+
+.margin-left-20{
+
+    margin-left:20px;
+
+}
+
+/*database description end*/
 /* Right tabs */
+.icon-16{font-size:20px;}
+.filtertableiconmenu{min-width:50px;}
 .physicaltab{width:200px !important;}
 .tabbable .nav-tabs li a { 
 color:#FFFFFF !important;
@@ -209,7 +226,7 @@ outline: 0;
 /*left tab mapsection end*/
 /* Table Right */
 .tableicon{
-	font-size:20px;
+	font-size:18px;
 	color:#6A6A6A;
 	
 	}
@@ -336,7 +353,7 @@ color: #3074A6;
 }
 .popoutscroll {
  overflow-y:scroll;
- height:200px;
+ height:290px;
 }
 .popoutscroll ul li {
      line-height:25px;
@@ -362,7 +379,12 @@ background-color:#2a6692;
 }
 .map-id{margin-bottom:0px !important;}
 /*popout end*/
+/*MapLegend-icon*/
+.MapLegend-icon {
 
+    font-size:30px;
+}
+/*MapLegend-icon end*/
 /* Table End */		
 	 	/* Dashboard Screen end */
 	

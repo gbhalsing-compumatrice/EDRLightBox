@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div class="container-fluid nomargin nopadding">
+        <div class="search bg-blue clearfix">
+            <div class="col-md-12 col-lg-12 col-sm-12">
+                <p class="text-60 text-white ">  Database Descriptions </p>
+            </div>
+          
+            <div class="searchinput input-group">
+                <input id="Search" type="textbox" placeholder="Search for Database" ng-model="SearchText.$" class="form-control input-lg" ng-focus="true">
+                <span class="input-group-btn">
+                    <button class="btn btn-lg btn-primary" type="button" id="addressSearch" ng-click="searchDatabase()">Search</button>
+                </span>
+            </div>
+            
+        </div>
+
+        <div class="col-md-12 col-lg-12 col-sm-12 text-13 top-margin">
+            <p>To maintain currency of the following federal and state databases, EDR contacts the appropriate governmental agency on a monthly or quarterly basis, as required.</p>
+
+            <p><b>Number of Days to Update: </b>Provides confirmation that EDR is reporting records that have been updated within 90 days from the date the government agency made the information available to the public</p>
+
+        </div>
+        <div class="col-md-12 col-lg-12 col-sm-12 text-13">
+            <h2>STANDARD ENVIRONMENTAL RECORDS</h2>
+            <div class="DBdescription" data-ng-repeat="DBdata in DBDescriptionData | filter : SearchText">
+                <h3>{{DBdata.dbName}}</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <h4> {{DBdata.descriptions[0].descriptionOne}}</h4>
+                        <p>
+                            {{DBdata.descriptions[0].detailsOne}}
+                        </p>
+                    </li>
+                    <li>
+                        <h4> {{DBdata.descriptions[0].descriptionTwo}}</h4>
+                        <p>
+                            {{DBdata.descriptions[0].detailsTwo}}
+                        </p>
+                    </li>
+                    <li>
+                        <h4> {{DBdata.descriptions[0].descriptionThree}}</h4>
+                        <p>
+                            {{DBdata.descriptions[0].detailsThree}}
+                        </p>
+                    </li>
+                </ul>
+            </div>
+          
+        </div>
+
+    </div>
+   
+</body>
+</html>
