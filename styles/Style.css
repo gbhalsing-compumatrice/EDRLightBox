@@ -210,7 +210,7 @@ body {
 }
 
 .backgroundmap {
-    background: url("../images/u2.png");
+    background: url("images/u2.png");
     background-position: center;
     background-size: cover;
     height: 768px;
