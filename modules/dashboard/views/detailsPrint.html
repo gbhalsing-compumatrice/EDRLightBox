@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        header {
+            display: none;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- popout details print-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12  col-xs-12 navbar">
+
+                <div class="navbar-header visible-print">
+
+                    <a class="navbar-brand logoprint"> LIGHTBOX<br><b>MY PROPERTY SAMPLE, 117 WEST MISSION ST, SANTA BARBARA, CA</b> </a>
+                </div>
+
+                <button class="pull-right btn btn-md btn-primary top-margin" onclick="window.print()"> <i class=" fa fa-print"></i>&nbsp; Print </button>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 ">
+                <p class="text-28 text-gray ">{{siteName}}</p>
+                <p class="text-28 nopadding nomargin text-gray "> {{siteAddress}} </p>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                <p class="text-13 text-primary">MAP ID: {{siteId}}</p>
+
+                <p class="text-13 text-primary">DISTANCE FROM TP: {{siteDistance}} </p>
+
+                <p class="text-13 text-primary">DIRECTION FROM TP: {{siteDirection}}</p>
+
+                <p class="text-13 text-primary">ELEVATION: {{siteElevation}} </p>
+
+            </div>
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 ">
+                <hr>
+                <br>
+                <hr>
+            </div>
+            <div class="col-md-12 col-lg-12 col-sm-12  ">
+                <div class="popoutdetail tab-content">
+                    <ul class="list-unstyled clearfix  text-13">
+                        <li data-ng-repeat="data in additionalInfoData">
+                            <strong class="col-md-5 col-xs-5" ng-hide="(hiddenFieldStatus == true) && (data.value == 'Not Reported')"> {{data.name}}:</strong><span class="col-md-5 col-xs-5 text-left" ng-hide="(hiddenFieldStatus == true) && (data.value == 'Not Reported')">{{data.value}}</span>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 col-sm-12  ">
+
+                <h3 class="text-gray">UST</h3>
+                <hr>
+
+            </div>
+            <div class="col-md-12 col-lg-12 col-sm-12  ">
+                <div class="popoutdetail tab-content">
+                    <ul class="list-unstyled clearfix  text-13">
+                        <li data-ng-repeat="data in additionalInfoUSTData">
+                            <strong class="col-md-5  col-xs-5" ng-hide="(hiddenFieldStatus == true) && (data.value == 'Not Reported')"> {{data.name}}:</strong><span class="col-md-5  col-xs-5 text-left" ng-hide="(hiddenFieldStatus == true) && (data.value == 'Not Reported')">{{data.value}}</span>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
