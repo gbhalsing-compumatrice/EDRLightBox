@@ -9,14 +9,14 @@
             <div class="col-md-12 col-lg-12 col-sm-12">
                 <p class="text-60 text-white ">  Database Descriptions </p>
             </div>
-          
+
             <div class="searchinput input-group">
-                <input id="Search" type="textbox" placeholder="Search for Database" class="form-control input-lg">
+                <input id="Search" type="textbox" placeholder="Search for Database" ng-model="SearchText.$" class="form-control input-lg" ng-focus="true">
                 <span class="input-group-btn">
-                    <button class="btn btn-lg btn-primary" type="button" id="addressSearch">Search</button>
+                    <button class="btn btn-lg btn-primary" type="button" id="addressSearch" ng-click="searchDatabase()">Search</button>
                 </span>
             </div>
-            
+
         </div>
 
         <div class="col-md-12 col-lg-12 col-sm-12 text-13 top-margin">
@@ -27,97 +27,33 @@
         </div>
         <div class="col-md-12 col-lg-12 col-sm-12 text-13">
             <h2>STANDARD ENVIRONMENTAL RECORDS</h2>
-            <div class="DBdescription">
-                <h3>FEDERAL NPL SITE LIST</h3>
+            <div class="DBdescription" data-ng-repeat="DBdata in DBDescriptionData | filter : SearchText">
+                <h3>{{DBdata.dbName}}</h3>
                 <ul class="list-unstyled">
                     <li>
-                        <h4> NPL: NATIONAL PRIORITY LIST</h4>
+                        <h4> {{DBdata.descriptions[0].descriptionOne}}</h4>
                         <p>
-                            National Priorities List (Superfund). The NPL is a subset of CERCLIS and identifies over 1,200 sites for priority leanup under the Superfund Program. NPL sites may encompass relatively large areas. As such, EDR provides polygon coverage for over 1,000 NPL site boundaries produced by EPA’s Environmental Photographic Interpretation Center (EPIC) and regional EPA offices.
+                            {{DBdata.descriptions[0].detailsOne}}
                         </p>
                     </li>
                     <li>
-                        <h4> Proposed NPL: Proposed National Priority List Sites</h4>
+                        <h4> {{DBdata.descriptions[0].descriptionTwo}}</h4>
                         <p>
-                            A site that has been proposed for listing on the National Priorities List through the issuance of a proposed rule in the Federal Register. EPA then accepts public comments on the site, responds to the comments, and places on the NPL those sites that continue to meet the requirements for listing
+                            {{DBdata.descriptions[0].detailsTwo}}
                         </p>
                     </li>
                     <li>
-                        <h4> NPL LIENS: Federal Superfund Liens</h4>
+                        <h4> {{DBdata.descriptions[0].descriptionThree}}</h4>
                         <p>
-                            Federal Superfund Liens. Under the authority granted the USEPA by CERCLA of 1980, the USEPA has the authority to file liens against real property in order to recover remedial action expenditures or when the property owner received notification of potential liability. USEPA compiles a listing of filed notices of Superfund Liens.
-                        </p>
-                    </li>
-                </ul>
-        </div>
-            <div class="DBdescription">
-                <h3>FEDERAL DELISTED NPL SITE LIST</h3>
-                <ul class="list-unstyled">
-                    <li>
-                        <h4> DELISTED NPL: National Priority List Deletions</h4>
-                        <p>
-                            The National Oil and Hazardous Substances Pollution Contingency Plan (NCP) establishes the criteria that the EPA uses to delete sites from the NPL. In accordance with 40 CFR 300.425.(e), sites may be deleted from the NPL where no further response is appropriate.
-                        </p>
-                    </li>
-                    
-                </ul>
-            </div>
-            <div class="DBdescription">
-                <h3>FEDERAL CERCLIS LIST</h3>
-                <ul class="list-unstyled">
-                    <li>
-                        <h4>CERCLIS-NFRAP: CERCLIS No Further Remedial Action Planned</h4>
-                        <p>
-                            CERCLIS contains data on potentially hazardous waste sites that have been reported to the USEPA by states, municipalities, private companies and private persons, pursuant to Section 103 of the Comprehensive Environmental Response, Compensation, and Liability Act (CERCLA). CERCLIS contains sites which are either proposed to or on the National Priorities List (NPL) and sites which are in the screening and assessment phase for possible inclusion on the NPL.
-                        </p>
-                    </li>
-                    <li>
-                        <h4> FEDERAL FACILITY: Federal Facility Site Information listing</h4>
-                        <p>
-                            A listing of National Priority List (NPL) and Base Realignment and Closure (BRAC) sites found in the Comprehensive Environmental Response, Compensation and Liability Information System (CERCLIS) Database where EPA Federal Facilities Restoration and Reuse Office is involved in cleanup activities.
-                        </p>
-                    </li>
-
-                </ul>
-            </div>
-            <div class="DBdescription">
-                <h3>FEDERAL CERCLIS NFRAP SITE LIST</h3>
-                <ul class="list-unstyled">
-                    <li>
-                        <h4>CERCLIS-NFRAP: CERCLIS No Further Remedial Action Planned</h4>
-                        <p>
-                            Archived sites are sites that have been removed and archived from the inventory of CERCLIS sites. Archived status indicates that, to the best of EPA’s knowledge, assessment at a site has been completed and that EPA has determined no further steps will be taken to list this site on the National Priorities List (NPL), unless information indicates this decision was not appropriate or other considerations require a recommendation for listing at a later time.This decision does not necessarily mean that there is no hazard associated with a given site; it only means that, based upon available information, the location is not judged to be a potential NPL site.
-                        </p>
-                    </li>
-                </ul>
-            </div>
-            <div class="DBdescription">
-                <h3>FEDERAL RCRA CORRACTS FACILITIES LIST</h3>
-                <ul class="list-unstyled">
-                    <li>
-                        <h4>CORRACTS: Corrective Action Report</h4>
-                        <p>
-                            CORRACTS identifies hazardous waste handlers with RCRA corrective action activity
-                        </p>
-                    </li>
-                </ul>
-            </div>
-            <div class="DBdescription">
-                <h3>FEDERAL RCRA NON-CORRACTS TSD FACILITIES LIST</h3>
-                <ul class="list-unstyled">
-                    <li>
-                        <h4>RCRA-TSDF: RCRA - Treatment, Storage and Disposal</h4>
-                        <p>
-                            RCRAInfo is EPA’s comprehensive information system, providing access to data supporting the Resource Conservation and Recovery Act (RCRA) of 1976 and the Hazardous and Solid Waste Amendments (HSWA) of 1984. The database includes selective information on sites which generate, transport, store, treat and/or dispose of hazardous waste as defined by the Resource Conservation and Recovery Act (RCRA). Transporters are individuals or entities that move hazardous waste from the generator offsite to a facility that can recycle, treat, store, or dispose of the waste. TSDFs treat, store, or dispose of the waste.
+                            {{DBdata.descriptions[0].detailsThree}}
                         </p>
                     </li>
                 </ul>
             </div>
 
-            <p><i>and so on and so forth...</i></p>
         </div>
 
     </div>
-   
+
 </body>
 </html>
