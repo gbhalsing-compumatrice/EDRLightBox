@@ -1,0 +1,799 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>EDR LightBox</title>
+    <style type="text/css">
+        body {
+            overflow: hidden;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container-fluid nomargin nopadding">
+        <!-- sub navbar-->
+        <div class="tabmap col-md-12 col-lg-12 tabmenu  ">
+            <div class="col-md-6 col-lg-6 nomargin nopadding">
+                <ul class="list-unstyled pull-leftlist">
+                    <li>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-info">HISTORICAL IMAGERY</button>
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#" ng-click="getSubborns()"><img src=" images/SANBOARDS.png" /> &nbsp;&nbsp; CERTIFIED SANBOARDS MAP</a></li>
+                                <li><a href="#" ng-click="getAERIALS()"><img src="images/7.5MINTOPO.png" />&nbsp;&nbsp; ARIAL PHOTO</a></li>
+                                <li><a href="#" ng-click="getTOPOS()"><img src="images/contourlines.png" />&nbsp;&nbsp; TOPOGRAPHIC MAPS</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <button class="btn btn-md btn-info"> TAX MAP</button>
+
+                    </li>
+
+                    <li>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-info">7.5 min topo</button>
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#"><img src="images/7.5MINTOPO.png" /> 7.5 min topo</a></li>
+                                <li><a href="#"><img src="images/contourlines.png" /> CONTOUR LINES</a></li>
+                            </ul>
+                        </div>
+
+                    </li>
+                    <li>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-info">AERIAL</button>
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+
+                        </div>
+
+                    </li>
+                    <li>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-info">STREET</button>
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">  <img src="images/simple-map.png" /> SIMPLE MAP</a></li>
+                                <li><a href="#">  <img src="images/Street-map.png" />STREET MAP</a></li>
+                            </ul>
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tabbable col-md-6 col-lg-6 nomargin nopadding tabmenu text-center ">
+                <ul class="list-unstyled pull-leftlist nomargin-list pull-right">
+                    <li>
+                        <button ng-click="getSelectedTab(1)" class="{{btnValue==1?'btn btn-md btn-success':'btn btn-md btn-info'}}" id="btnSummary"> SUMMARY</button>
+
+                    </li>
+                    <li>
+                        <div class="btn-group">
+                            <button type="button" ng-click="getSelectedTab(2)" class="{{btnValue==2?'btn btn-md btn-success':'btn btn-md btn-info'}}">FINDINGS</button>
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+
+                        </div>
+                    </li>
+
+
+                    <li>
+                        <div class="btn-group">
+                            <button type="button" ng-click="getSelectedTab(3)" class="{{btnValue==3?'btn btn-md btn-success':'btn btn-md btn-info'}}">PHYSICAL SETTINGS</button>
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+
+                        </div>
+
+                    </li>
+
+                    <li>
+                        <div class="btn-group">
+                            <button type="button" ng-click="getSelectedTab(4)" class="{{btnValue==4?'btn btn-md btn-success':'btn btn-md btn-info'}}">{{OtherTabname}}</button>
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                                <li id="otherOne"><a data-toggle="tab" class="pointer" ng-click="LoadOtherTableData(1)"><i class=" navbaricon fa fa-file-text-o"></i> Building Permits </a></li>
+                                <li id="otherTwo"><a data-toggle="tab" class="pointer" ng-click="LoadOtherTableData(2)"><i class="navbaricon fa fa-picture-o"></i> Mobile Photos </a></li>
+                                <li id="otherThree"><a data-toggle="tab" class="pointer" ng-click="LoadOtherTableData(3)"><i class=" navbaricon pfa fa-pencil-square"></i> Mobile Notes </a></li>
+                            </ul>
+                        </div>
+
+                    </li>
+                </ul>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <!-- sub navbar end-->
+        <div class="clearfix"></div>
+        <div class="row-offcanvas row-offcanvas-left">
+
+            <div id="sidebar" class="sidebar-offcanvas rightlist">
+                <div class="col-md-12 col-lg-12 col-sm-12 nomargin nopadding ">
+                    <script type="text/ng-template" id="info.html">
+                        <div ng-include src="'modules/dashboard/views/InfoPopup.html'"></div>
+
+                    </script>
+                    <div class="TablePanel">
+                        <div class="tab-content" ng-show="selectedTab == 1">
+                            <div class="col-md-12 bg-blue tableheader ">
+
+                                <div class="col-md-7 col-lg-7 col-sm-7  vcenter">
+                                    <h4 class="text-white table-heading ">MAP FINDINGS SUMMARY</h4>
+                                    <span class="text-white">  </span>
+
+                                </div>
+                                <div class="col-md-4 col-lg-4 col-sm-4  nomargin nopadding vcenter">
+                                    <h5 class="text-white text-right">{{summaryRecordsCount}} DATABASES SEARCHED</h5>
+
+
+                                </div>
+                            </div>
+
+                            <table ng-table="tableParams" class="col-md-12 col-lg-12 col-sm-12 nomargin nopadding table table-bordered ng-table-responsive tablefont" id="summaryId">
+
+                                <tbody ng-repeat="group in $groups">
+                                    <tr class="ng-table-group">
+                                        <td class="well" colspan="{{$columns.length}}">
+                                            <strong>{{ group.value }}</strong>
+                                        </td>
+                                    </tr>
+                                    <tr ng-hide="group.$hideRows" ng-repeat="user in group.data">
+                                        <td data-title="'Database'">
+                                            {{user.childDBname}}
+                                        </td>
+                                        <td data-title="'Dist.'">
+                                            {{user.Dist}}
+                                        </td>
+                                        <td data-title="'TP'">
+                                            {{user.TP}}
+                                        </td>
+                                        <td data-title="'<1/8'">
+                                            {{user.firstVal}}
+                                        </td>
+                                        <td data-title="'1/8 - 1/4'">
+                                            {{user.secondVal}}
+                                        </td>
+                                        <td data-title="'1/4 - 1/2'">
+                                            {{user.thirdVal}}
+                                        </td>
+                                        <td data-title="'1/2 - 1'">
+                                            {{user.fourthVal}}
+                                        </td>
+                                        <td data-title="'> 1'">
+                                            {{user.fifthVal}}
+                                        </td>
+                                        <td data-title="'TOTAL'" num-filter>
+                                            {{user.sum}}
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+
+                                <tfoot>
+                                    <tr>
+                                        <td>TOTALS </td>
+                                        <td></td>
+                                        <td>{{TPTotal}}</td>
+                                        <td>{{firstValTotal}}</td>
+                                        <td>{{secondValTotal}}</td>
+                                        <td>{{thirdValTotal}}</td>
+                                        <td>{{fourthValTotal}}</td>
+                                        <td>{{fifthValTotal}}</td>
+                                        <td>{{grandTotalVal}}</td>
+                                    </tr>
+
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="tab-content" ng-show="selectedTab == 2">
+                            <div class="col-md-12 bg-blue tableheader ">
+
+                                <div class="col-md-7 col-lg-7 col-sm-7  vcenter">
+                                    <h4 class="text-white table-heading">FINDINGS</h4>
+                                    <span class="text-white"> SHOWING ALL</span>
+
+                                </div>
+                                <div class="col-md-4 col-lg-4 col-sm-4  nomargin nopadding vcenter">
+                                    <h5 class="text-white text-right">{{findingRecordsCount}} RECORDS</h5>
+                                    <div class="btn-group pull-right">
+                                        <a class="text-white" data-toggle="dropdown" href="#">COLUMNS <span class="caret"></span></a>
+                                        <ul class="dropdown-menu columnsfilter">
+                                            <li>
+                                                <input name="currentTabel" type="checkbox" ng-click="" /> Map ID
+
+                                            </li>
+                                            <li>
+                                                <input name="currentTabel" type="checkbox" ng-click="" /> Site Name
+
+
+                                            </li>
+                                            <li>
+                                                <input name="currentTabel" type="checkbox" ng-click="" /> Address
+
+                                            </li>
+                                            <li>
+                                                <input name="currentTabel" type="checkbox" ng-click="" /> Databases
+
+                                            </li>
+                                            <li>
+                                                <input name="currentTabel" type="checkbox" ng-click="" /> Relative Elevation
+
+
+                                            </li>
+                                            <li>
+                                                <input name="currentTabel" type="checkbox" ng-click="" /> Distance (ft)
+
+                                            </li>
+                                            <li>
+                                                <input name="currentTabel" type="checkbox" ng-click="" /> Direction
+
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <table class="col-md-12 col-lg-12 col-sm-12 nomargin nopadding table table-bordered table-fixed tablefont tableSection">
+                                <thead>
+
+                                    <tr>
+                                        <th>
+                                            <div class="btn-group ">
+                                                <span class="dropdown-toggle pointer" data-toggle="dropdown">
+                                                    <i class="fa fa-caret-down text-primary icon-16"></i>
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </span>
+
+                                                <ul class="dropdown-menu filtertableiconmenu" role="menu">
+
+                                                    <li>
+                                                        <input name="currentTabel" type="checkbox" ng-model="star" ng-click="" />
+                                                        <i class=" tableicongray fa fa-circle"></i>
+                                                    </li>
+                                                    <li>
+                                                        <input name="currentTabel" type="checkbox" ng-model="unstar" ng-click="" />
+                                                        <i class="tableicongreen fa fa-check-circle"></i>
+
+                                                    </li>
+                                                    <li>
+                                                        <input name="currentTabel" type="checkbox" ng-model="eyeon" ng-click="" />
+                                                        <i class=" tableicon fa fa-ban"></i>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+
+                                        </th>
+                                        <th class="col-md-3">SITE NAME</th>
+                                        <th class="col-md-3">ADDRESS</th>
+                                        <th class="col-md-3">
+                                            Databases
+                                            <div class="btn-group pull-right">
+
+                                                <span class="dropdown-toggle pointer" data-toggle="dropdown">
+                                                    <i class="fa fa-caret-down text-primary icon-16"></i>
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </span>
+
+                                                <ul class="dropdown-menu datafiltermenu" role="menu">
+                                                    <span class="text-12">MAPPED SITES FILTER:</span>
+
+                                                    <li class="dblist" data-ng-repeat="dbData in dbList">
+                                                        <input type="checkbox" ng-model="filterItems[dbData.database]"> <span class="text-13">{{dbData.database}} </span><span class="filterno pull-right text-13">{{dbData.count}}</span>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </th>
+                                        <th class="col-md-1"><a href="" ng-click="orderByField='rel'; reverseSort = !reverseSort">REL ELEV</a></th>
+                                        <th class="col-md-1"><a href="" ng-click="orderByField='distance'; reverseSort = !reverseSort">Dist (ft)</a></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="sites in sitesData | orderBy:orderByField : reverseSort | filter:DBFilter" ng-class="{'rowClick':sites.Id == selectedRow}">
+                                        <td class=""><a href="" ng-click=""><i class=" tableicongray fa fa-circle"></i></a> </td>
+                                        <td class="col-md-3" ng-click="getSelectedRowData(sites.Id)">{{sites.sitename}}</td>
+                                        <td class="col-md-3" ng-click="getSelectedRowData(sites.Id)">{{sites.address}}</td>
+                                        <td class="col-md-3" ng-click="getSelectedRowData(sites.Id)">{{sites.database}}</td>
+                                        <td class="col-md-1" ng-click="getSelectedRowData(sites.Id)">{{sites.rel}}</td>
+                                        <td class="col-md-1" ng-click="getSelectedRowData(sites.Id)">{{sites.distance}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+
+
+                        <div class="tab-content" ng-show="selectedTab == 3">
+                            <div class="col-md-12 bg-blue tableheader ">
+
+                                <div class="col-md-7 col-lg-7 col-sm-7  vcenter">
+                                    <h4 class="text-white table-heading ">AQUIFLOW</h4>
+                                    <span class="text-white"> SHOWING ALL</span>
+
+                                </div>
+                                <div class="col-md-4 col-lg-4 col-sm-4  nomargin nopadding vcenter">
+                                    <h5 class="text-white text-right">{{physicalRecordsCount}} RECORDS</h5>
+                                </div>
+                            </div>
+
+                            <table class="col-md-12 col-lg-12 col-sm-12 nomargin nopadding table table-bordered table-fixed tableSection" id="tblAquiFlow" ng-show="IsAquiFlow">
+                                <thead>
+                                    <tr>
+                                        <th class="col-md-1">ID</th>
+                                        <th class="col-md-4">Site Name</th>
+                                        <th class="col-md-3">Databases</th>
+                                        <th class="col-md-2" ng-show="{{disableCol}}">REl ELEV</th>
+                                        <th class="col-md-2">Dist(ft)</th>
+                                        <th class="col-md-2">Dir</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="aquiData in aquiFlowData" ng-class="{'rowClick':aquiData.Id == selectedRow}">
+
+                                        <td class="col-md-1" ng-click="getSelectedRowData(aquiData.Id)">{{aquiData.Id}}</td>
+                                        <td class="col-md-4" ng-click="getSelectedRowData(aquiData.Id)">{{aquiData.sitename}}</td>
+                                        <td class="col-md-3" ng-click="getSelectedRowData(aquiData.Id)">{{aquiData.database}}</td>
+                                        <td class="col-md-2" ng-show="{{disableCol}}" ng-click="getSelectedRowData(aquiData.Id)">{{aquiData.rel}}</td>
+                                        <td class="col-md-2" ng-click="getSelectedRowData(aquiData.Id)">{{aquiData.distance}}</td>
+                                        <td class="col-md-2" ng-click="getSelectedRowData(aquiData.Id)">{{aquiData.dir}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="col-md-12 col-lg-12 col-sm-12 nomargin nopadding table table-bordered table-fixed tableSection" id="tblWaterWell" ng-show="IsWaterWell">
+                                <thead>
+                                    <tr>
+                                        <th> </th>
+                                        <th class="col-md-2">Map ID</th>
+                                        <th class="col-md-3">Site Name</th>
+                                        <th class="col-md-3">Databases</th>
+                                        <th class="col-md-2">Dist(ft)</th>
+                                        <th class="col-md-2">Dir</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="waterData in waterWellsData">
+                                        <td><a href="" ng-click=""><i class="tableicon fa fa-flag-o"></i></a><br><a href="" ng-click=""><i class="tableicon fa fa-ban"></i></a> </td>
+                                        <td class="col-md-2">{{waterData.Id}}</td>
+                                        <td class="col-md-3">{{waterData.sitename}}</td>
+                                        <td class="col-md-3">{{waterData.database}}</td>
+                                        <td class="col-md-2">{{waterData.distance}}</td>
+                                        <td class="col-md-2">{{waterData.dir}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="col-md-12 col-lg-12 col-sm-12 nomargin nopadding table table-bordered table-fixed tableSection" id="tblSoilData" ng-show="IsSoilDataTbl">
+                                <thead>
+                                    <tr>
+                                        <th> </th>
+                                        <th class="col-md-2">Soil ID</th>
+                                        <th class="col-md-3">Soil Type</th>
+                                        <th class="col-md-3">Texture</th>
+                                        <th class="col-md-2">Hydrologic Group</th>
+                                        <th class="col-md-2">Drainage</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="soil in soilData">
+                                        <td><a href="" ng-click=""><i class="tableicon fa fa-flag-o"></i></a><br><a href="" ng-click=""><i class="tableicon fa fa-ban"></i></a> </td>
+                                        <td class="col-md-2">{{soil.soilId}}</td>
+                                        <td class="col-md-3">{{soil.soiltype}}</td>
+                                        <td class="col-md-3">{{soil.Texture}}</td>
+                                        <td class="col-md-3">{{soil.hydrologicGroup}}</td>
+                                        <td class="col-md-2">{{soil.Drainage}}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-content" ng-show="selectedTab == 4">
+                            <div class="col-md-12 bg-blue tableheader ">
+
+                                <div class="col-md-7 col-lg-7 col-sm-7  vcenter">
+                                    <h4 class="text-white table-heading ">{{OtherTabname}}</h4>
+                                    <span class="text-white"> SHOWING ALL</span>
+
+                                </div>
+                                <div class="col-md-4 col-lg-4 col-sm-4  nomargin nopadding vcenter">
+                                    <h5 class="text-white text-right">{{otherRecordsCount}} RECORDS</h5>
+
+
+                                </div>
+                            </div>
+                            <table class="col-md-12 col-lg-12 col-sm-12 nomargin nopadding table table-bordered table-fixed tableSection" id="tblBuidingData" ng-show="IsPermitDataTbl">
+                                <thead>
+                                    <tr>
+
+                                        <th class="col-md-1"> ID</th>
+                                        <th class="col-md-3">Address</th>
+                                        <th class="col-md-3">Date</th>
+                                        <th class="col-md-2">Type</th>
+                                        <th class="col-md-2">Use</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="permitdata in buildingPermitData">
+
+                                        <td class="col-md-1">{{permitdata.Id}}</td>
+                                        <td class="col-md-3">{{permitdata.address}}</td>
+                                        <td class="col-md-3">{{permitdata.date}}</td>
+                                        <td class="col-md-3">{{permitdata.type}}</td>
+                                        <td class="col-md-2">{{permitdata.use}}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="col-md-12 col-lg-12 col-sm-12 table table-bordered table-fixed tableSection" id="tblNotesData" ng-show="IsNotesDataTbl">
+                                <thead>
+                                    <tr>
+                                        <th class="col-md-1">ID</th>
+                                        <th class="col-md-11">NOTE TEXT</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="notesdata in notesTblData">
+
+                                        <td class="col-md-1">{{notesdata.Id}}</td>
+                                        <td class="col-md-11">{{notesdata.note}}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="clearfix"></div>
+                            <div ng-show="isGallary">
+                                <!--photo gallery-->
+                                <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-use-bootstrap-modal="false">
+                                    <div class="slides"></div>
+                                    <div class="carousel-caption captionphoto">
+                                        <h3 class="title text-13"></h3>
+                                    </div>
+
+                                    <a class="prev">‹</a>
+                                    <a class="next">›</a>
+                                    <a class="close"><i class="fa fa-times-circle"></i></a>
+                                    <a class="play-pause"></a>
+                                    <ol class="indicator"></ol>
+                                </div>
+                                <div id="links" class="">
+                                    <div class="col-xs-6 col-sm-4 col-md-4 photopadding" ng-repeat="imageData in gallery">
+                                        <div class="thumbnail nomargin">
+                                            <div class="caption ">
+                                                <p>{{imageData.caption}}</p>
+                                            </div>
+
+                                            <a href="images/{{imageData.mainImage}}" title="{{imageData.title}}" data-gallery>
+                                                <img src="images/{{imageData.thumbnilImage}}" alt="{{imageData.title}}" />
+                                            </a>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <!-- Photo Gallery End -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="rightlist bluedivider">
+                <div class="toggler" ng-click="getListpanel()">
+                    <a style="display: block;" ng-show="isrightCaretActive">
+                        <i class="fa fa-caret-right"></i>
+                        <i class="fa fa-caret-right"></i>
+                        <i class="fa fa-caret-right"></i>
+                    </a>
+                    <a ng-show="isleftCaretActive">
+                        <i class="fa fa-caret-left"></i>
+                        <i class="fa fa-caret-left"></i>
+                        <i class="fa fa-caret-left"></i>
+                    </a>
+                </div>
+            </div>
+            <div id="panel" class="rightlist panelwidth">
+
+                <div class="col-md-12 col-lg-12 nomargin nopadding paneldiv">
+                    <div class=" panel panel-default">
+                        <div class="panel-heading popoutheader">
+                            <div class="col-xs-4 nopadding"><a class="pointer" ng-click="hidePopup()"><i class=" popicon text-gray fa fa-arrow-right"></i></a></div>
+                            <div class="col-xs-8 nopadding">
+                                <div class="row">
+                                    <div class="col-md-4 col-md-push-8  text-right"><a href="#/propertydetails/{{siteId}}" target="_blank"><i class="popicon text-gray  fa fa-external-link"></i> </a></div>
+                                    <div class="col-md-8 col-md-pull-2 text-20 "><b>{{siteId}}</b></div>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"> </div>
+                        </div>
+
+
+                        <div class="well  nopadding nomargin" ng-hide="collapsed" style="display:block">
+                            <div class=" col-md-6 col-lg-6 col-sm-6">
+                                <span class="popoutspan  vcenter"> {{siteName}}</span><br>
+                                <span class="text-13  vcenter"> {{siteAddress}}</span>
+                                <span class="text-13  vcenter">EDR ID: {{siteEdrId}}</span>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6 vcenter">
+                                <span class="text-10 text-primary col-md-6 col-sm-6"> DIRECTION:</span>
+                                <span class="text-10  col-md-6 col-sm-6"> {{siteDirection}} </span><br>
+
+                                <span class="text-10  col-md-6 col-sm-6 text-primary"> DISTANCE:</span>
+                                <span class="text-10  col-md-6 col-sm-6"> {{siteDistance}} </span><br>
+
+                                <span class="text-10  col-md-6 col-sm-6 text-primary"> RELATIVE:</span>
+                                <span class="text-10  col-md-6 col-sm-6"> {{siteElevation}} </span><br>
+
+                                <span class="text-10  col-md-6 col-sm-6 text-primary"> ACTUAL:</span>
+                                <span class="text-10 col-md-6 col-sm-6"> {{siteActual}}</span><br>
+
+                                <span class="text-10  col-md-6 col-sm-6 text-primary"> EPA ID:</span>
+                                <span class="text-10  col-md-6 col-sm-6"> {{siteEpaId}}</span>
+                            </div>
+
+                            <div class="clearfix"> </div>
+                            <div class="col-md-12 col-sm-12" ng-show="isphysicalTabOn">
+                                <span class="text-10 text-primary col-md-6 col-sm-6"> GROUNDWATER FLOW:</span>
+                                <span class="text-10  col-md-6 col-sm-6"> {{siteGroundWaterflow}} </span><br>
+
+                                <span class="text-10  col-md-6 col-sm-6 text-primary"> SHALLOW WATER DEPTH:</span>
+                                <span class="text-10  col-md-6 col-sm-6"> {{siteShallowDepth}} </span><br>
+
+                                <span class="text-10  col-md-6 col-sm-6 text-primary"> DEEP WATER DEPTH:</span>
+                                <span class="text-10  col-md-6 col-sm-6"> {{siteDeepDepth}} </span><br>
+
+                                <span class="text-10  col-md-6 col-sm-6 text-primary"> AVERAGE WATER DEPTH:</span>
+                                <span class="text-10 col-md-6 col-sm-6">  {{siteAvgDepth}}</span><br>
+
+                                <span class="text-10  col-md-6 col-sm-6 text-primary"> DATE:</span>
+                                <span class="text-10  col-md-6 col-sm-6"> {{siteAquiDate}}</span>
+                            </div>
+                        </div>
+
+                        <div class="btn-group col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding nomargin popoutdropdown">
+                            <button type="button" class="col-lg-7 col-md-7 col-sm-7 col-xs-7 btn btn-lg btn-default well " ng-click="bindDefultAdditionalInfo()">{{siteDatabase}}</button>
+                            <button type="button" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 btn btn-lg btn-default well dropdown-toggle " data-toggle="dropdown" aria-expanded="false">
+                                <i class="icon-16 fa fa-caret-down"></i>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <button type="button" ng-model="collapsed" ng-click="collapsed=!collapsed" class="col-lg-2 col-md-2 col-sm-2 col-xs-2  btn btn-lg btn-default well  "><i class="{{(collapsed)?'icon-16 fa fa-compress':'icon-16 fa fa-expand'}}"></i></button>
+                            <button type="button" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn btn-lg btn-default well" ng-click="showInfoPopup()"><i class="icon-16 fa fa-question-circle"></i></button>
+
+                            <div class="clearfix"></div>
+                            <ul class="col-md-12 dropdown-menu" role="menu">
+
+                                <li data-ng-repeat="DBdata in popupDBList">
+                                    <a ng-click="getDetailsByDB(DBdata.Id,DBdata.name)" du-smooth-scroll du-scrollspy offset="50">{{DBdata.name}}</a>
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="{{(collapsed)?'popoutscrollExpand col-md-12 nomargin nopadding ':'popoutscroll col-md-12 nomargin nopadding'}}" id="divAddInfo">
+                            <ul class="list-unstyled text-10">
+
+                                <div class="col-md-12 nomargin nopadding" ng-repeat="infoData in AdditionalData">
+                                    <div class="col-md-6 col-xs-6 col-lg-6"><b>{{infoData.name}}</b></div>
+                                    <div class="col-md-6 col-xs-6 col-lg-6">{{infoData.value}}</div>
+                                </div>
+
+                                <div class="col-md-12 well nopadding" id="UST">
+                                    <h4 class="col-md-6 col-lg-6 col-sm-6">UST </h4>
+                                    <span class="col-md-6 col-lg-6 col-sm-6 text-right pointer" style=" padding:10px 10px 0px 0px" ng-click="toTheTop()"> <i class="text-blue icon-16 fa fa-arrow-circle-o-up"></i> </span>
+                                </div>
+                                <div class="col-md-12 nomargin nopadding" ng-repeat="infoData in AdditionalDataUST">
+                                    <div class="col-md-6 col-xs-6 col-lg-6"><b>{{infoData.name}}</b></div>
+                                    <div class="col-md-6 col-xs-6 col-lg-6">{{infoData.value}}</div>
+                                </div>
+
+                                <div class="col-md-12 well nopadding" id="DATABASE">
+                                    <h4 class="col-md-6 col-lg-6 col-sm-6">DATABASE 3 </h4>
+                                    <span class="col-md-6 col-lg-6 col-sm-6 text-right pointer" style=" padding:10px 10px 0px 0px" ng-click="toTheTop()"> <i class="text-blue icon-16 fa fa-arrow-circle-o-up"></i> </span>
+                                </div>
+                                <div class="col-md-12 nomargin nopadding">
+                                    <img src="images/u923.png" alt="database" />
+                                </div>
+                                <div class="col-md-12 well nopadding" id="DATABASE">
+                                    <h4 class="col-md-6 col-lg-6 col-sm-6">DATABASE 4</h4>
+                                    <span class="col-md-6 col-lg-6 col-sm-6 text-right pointer" style=" padding:10px 10px 0px 0px" ng-click="toTheTop()"> <i class="text-blue icon-16 fa fa-arrow-circle-o-up"></i> </span>
+                                </div>
+                                <div class="col-md-12 nomargin nopadding">
+                                    <img src="images/u923.png" alt="database" />
+                                </div>
+                            </ul>
+
+                        </div>
+                        <div class="clearfix"> </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Left Side Map section -->
+            <div id="main">
+                <!-- On MAP left panel toggle -->
+                <div class="slidepanel col-md-2" id="snrbm">
+                    <div class="bg-blue text-white slidepanelhead" style="width:80px;">SNRBM  <i ng-click="hideleftpopup()" class="text-white pointer icon-13 fa fa-times pull-right"></i> </div>
+                    <div class="well slidepanelyear " style="width:80px;">
+
+                        <form>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1800
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1806
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1808
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1809
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1810
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1811
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1812
+                            </div>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1825
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1830
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1840
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1850
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1860
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="slidepanel col-md-2" id="AERIALS">
+                    <div class="bg-blue text-white slidepanelhead" style="width:80px;">AERIALS  <i ng-click="hideleftpopup()" class="text-white pointer icon-13 fa fa-times pull-right"></i> </div>
+                    <div class="well slidepanelyear " style="width:80px;">
+
+                        <form>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">1910
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1920
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1930
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1950
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1960
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1970
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1980
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="slidepanel col-md-2" id="TOPOS">
+                    <div class="bg-blue text-white slidepanelhead" style="width:80px;">TOPOS  <i ng-click="hideleftpopup()" class="text-white pointer icon-13 fa fa-times pull-right"></i> </div>
+                    <div class="well slidepanelyear " style="width:80px;">
+
+                        <form>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">1910
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1920
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1930
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1950
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- On MAP left panel toggle end-->
+
+
+                <div class="col-md-12 col-lg-12 col-sm-12 nomargin nopadding ">
+                    <div class="backgroundmap">
+
+                    </div>
+                </div>
+            </div>
+            <!-- Left Side Map section end -->
+        </div>
+    </div>
+</body>
+</html>
