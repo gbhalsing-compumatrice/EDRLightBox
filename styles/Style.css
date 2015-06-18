@@ -23,12 +23,12 @@ body {
     background-color: #FFFFFF;
     float: right;
     position: relative;
-    z-index:15;
+    
     overflow:hidden;
     /*overflow-y: auto;
                    overflow-x: hidden;*/
 }
-
+.blueimp-gallery{z-index:200 !important;}
 #main {
     overflow: auto;
     height: 100%;
