@@ -862,11 +862,11 @@ tfoot {
 
 
     #scrollable-area {
-  position:absolute;
+  position: absolute;
     width: 100%;
-    height: 75vh;
+    height: 72vh;
     border: 2px solid #ccc;
-   margin-top:95px;
+    margin-top: 95px;
     overflow-y: scroll; /* <-- here is what is important*/
 }
   
@@ -876,9 +876,9 @@ tfoot {
         padding-right:0px;
     }
       #summaryId thead{
-
-        position:fixed;
-        margin-top:-30px;
-        padding-right:5px !important; 
+ position: fixed;
+    margin-top: -30px;
+    padding-right: 0px !important;
+     width: 36.5%;
     }
         
