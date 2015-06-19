@@ -1,0 +1,17 @@
+﻿[
+       { "Id": "1", "sitename": "MISSION MOBI", "address": "1936 STATE ST", "database": "EDR US Hist Auto Stat", "rel": "Higher", "distance": "753",  "direction": "North", "actual": "100 FT ASL", "epaID": "N/A", "edrID": "S105620237" },
+       { "Id": "2", "sitename": "ARCO #5075 AM/PM MIN", "address": "1936 STATE ST", "database": "EDR US Hist Auto Stat", "rel": "Lower", "distance": "653",  "direction": "North", "actual": "100 FT ASL", "epaID": "N/A", "edrID": "S105620237" },
+       { "Id": "3", "sitename": "MOBIL OIL", "address": "1936 STATE ST", "database": "LUST", "rel": "Higher", "distance": "853",  "direction": "North", "actual": "100 FT ASL", "epaID": "N/A", "edrID": "S105620237" },
+       { "Id": "4", "sitename": "SCOTT JAS 201", "address": "128 W MISSION ST", "database": "EDR US Hist Auto Stat", "rel": "Higher", "distance": "142",  "direction": "North", "actual": "100 FT ASL", "epaID": "N/A", "edrID": "S105620237" },
+       { "Id": "5", "sitename": "AT&T MOBILITY - COTT", "address": "PUEBLO & BATH", "database": "CUPA Listings", "rel": "Higher", "distance": "142",  "direction": "North", "actual": "100 FT ASL", "epaID": "N/A", "edrID": "S105620237" },
+       { "Id": "6", "sitename": "HELENS LAUNDRY DRY", "address": "1934 DE LA VINA ST", "database": "EDR US Hist Cleaners", "rel": "Lower", "distance": "247",  "direction": "North", "actual": "100 FT ASL", "epaID": "N/A", "edrID": "S105620237" },
+       { "Id": "7", "sitename": "FLOREA PAU", "address": "1932 DE LA VINA ST", "database": "EDR US Hist Cleaners", "rel": "Lower", "distance": "250",  "direction": "North", "actual": "100 FT ASL", "epaID": "N/A", "edrID": "S105620237" },
+       { "Id": "8", "sitename": "SO CA EDISON - MODOC", "address": "136 DE LA GUERA ST E", "database": "CUPA Listings", "rel": "Lower", "distance": "553",  "direction": "North", "actual": "100 FT ASL", "epaID": "N/A", "edrID": "S105620237" },
+       { "Id": "9", "sitename": "GULF SERVICE STATION", "address": "1940 CHAPALA ST", "database": "EDR US Hist Auto Stat", "rel": "Higher", "distance": "246",  "direction": "North", "actual": "100 FT ASL", "epaID": "N/A", "edrID": "S105620237" },
+       { "Id": "10", "sitename": "MOBIL OIL", "address": "1936 STATE ST", "database": "LUST", "rel": "Higher", "distance": "853",  "direction": "North", "actual": "100 FT ASL", "epaID": "N/A", "edrID": "S105620237" },
+       { "Id": "11", "sitename": "FLOREA PAU", "address": "1932 DE LA VINA ST", "database": "EDR US Hist Cleaners", "rel": "Lower", "distance": "250",  "direction": "North", "actual": "100 FT ASL", "epaID": "N/A", "edrID": "S105620237" },
+       { "Id": "12", "sitename": "MOBIL OIL", "address": "1936 STATE ST", "database": "LUST", "rel": "Higher", "distance": "853",  "direction": "North", "actual": "100 FT ASL", "epaID": "N/A", "edrID": "S105620237" },
+       { "Id": "13", "sitename": "FLOREA PAU", "address": "1932 DE LA VINA ST", "database": "EDR US Hist Cleaners", "rel": "Lower", "distance": "250",  "direction": "North", "actual": "100 FT ASL", "epaID": "N/A", "edrID": "S105620237" },
+       { "Id": "14", "sitename": "MOBIL OIL", "address": "1936 STATE ST", "database": "LUST", "rel": "Higher", "distance": "853",  "direction": "North", "actual": "100 FT ASL", "epaID": "N/A", "edrID": "S105620237" }
+
+]
