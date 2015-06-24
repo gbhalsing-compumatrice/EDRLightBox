@@ -647,7 +647,7 @@
                             <ul class="col-md-12 dropdown-menu" role="menu">
 
                                 <li data-ng-repeat="DBdata in popupDBList">
-                                    <a ng-click="getDetailsByDB(DBdata.Id,DBdata.name)" href="#{{DBdata.name}}" du-smooth-scroll du-scrollspy offset="50">{{DBdata.name}}</a>
+                                    <a ng-click="getDetailsByDB(DBdata.Id,DBdata.name)"  du-smooth-scroll du-scrollspy offset="50">{{DBdata.name}}</a>
 
                                 </li>
                             </ul>
@@ -655,30 +655,30 @@
                         <div class="{{(collapsed)?'popoutscrollExpand col-md-12 nomargin nopadding ':'popoutscroll col-md-12 nomargin nopadding'}}" id=" id=" divaddinfo">
                             <ul class="list-unstyled text-10">
 
-                                <div class="col-md-12 nomargin nopadding" ng-repeat="infoData in AdditionalData">
+                                <div class="col-md-12 nomargin nopadding" id="LUST" ng-repeat="infoData in AdditionalData">
                                     <div class="col-md-6 col-xs-6 col-lg-6"><b>{{infoData.name}}</b></div>
                                     <div class="col-md-6 col-xs-6 col-lg-6">{{infoData.value}}</div>
                                 </div>
 
                                 <div class="col-md-12 well nopadding" id="UST">
                                     <h4 class="col-md-6 col-lg-6 col-sm-6">UST </h4>
-                                    <span class="col-md-6 col-lg-6 col-sm-6 text-right pointer" style=" padding:10px 10px 0px 0px" ng-click="toTheTop()"> <i class="text-blue icon-16 fa fa-arrow-circle-o-up"></i> </span>
+                                    <span class="col-md-6 col-lg-6 col-sm-6 text-right " style=" padding:10px 10px 0px 0px"> <span><i class="text-blue icon-16 fa fa-arrow-circle-o-up pointer" ng-click="toTheTop()"></i></span> </span>
                                 </div>
                                 <div class="col-md-12 nomargin nopadding" ng-repeat="infoData in AdditionalDataUST">
                                     <div class="col-md-6 col-xs-6 col-lg-6"><b>{{infoData.name}}</b></div>
                                     <div class="col-md-6 col-xs-6 col-lg-6">{{infoData.value}}</div>
                                 </div>
 
-                                <div class="col-md-12 well nopadding" id="DATABASE">
+                                <div class="col-md-12 well nopadding" id="DATABASE 3">
                                     <h4 class="col-md-6 col-lg-6 col-sm-6">DATABASE 3 </h4>
-                                    <span class="col-md-6 col-lg-6 col-sm-6 text-right pointer" style=" padding:10px 10px 0px 0px" ng-click="toTheTop()"> <i class="text-blue icon-16 fa fa-arrow-circle-o-up"></i> </span>
+                                    <span class="col-md-6 col-lg-6 col-sm-6 text-right " style=" padding:10px 10px 0px 0px">  <span><i class="text-blue icon-16 fa fa-arrow-circle-o-up pointer" ng-click="toTheTop()"></i></span> </span>
                                 </div>
                                 <div class="col-md-12 nomargin nopadding">
                                     <img src="images/u923.png" alt="database" />
                                 </div>
-                                <div class="col-md-12 well nopadding" id="DATABASE">
+                                <div class="col-md-12 well nopadding" id="DATABASE 4">
                                     <h4 class="col-md-6 col-lg-6 col-sm-6">DATABASE 4</h4>
-                                    <span class="col-md-6 col-lg-6 col-sm-6 text-right pointer" style=" padding:10px 10px 0px 0px" ng-click="toTheTop()"> <i class="text-blue icon-16 fa fa-arrow-circle-o-up"></i> </span>
+                                    <span class="col-md-6 col-lg-6 col-sm-6 text-right 	" style=" padding:10px 10px 0px 0px">  <span><i class="text-blue icon-16 fa fa-arrow-circle-o-up pointer" ng-click="toTheTop()"></i></span>  </span>
                                 </div>
                                 <div class="col-md-12 nomargin nopadding">
                                     <img src="images/u923.png" alt="database" />
